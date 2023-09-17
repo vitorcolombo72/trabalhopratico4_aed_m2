@@ -1,16 +1,16 @@
-void quicksort(int *valores,int *unicos,int start, int end){
+void quicksort( int *valores , int *unicos , int start , int end) {
     int i,j,pivot,temp,temp2;
     i = start;
     j = end-1;
-    pivot = valores[(start + end)/2];
-      while(i <= j){
-        while(valores[i] > pivot && i < end){
+    pivot = valores[ ( start + end ) / 2 ];
+      while( i <= j ) {
+        while( valores[i] > pivot && i < end ) {
           i++;
         }
-        while(valores[j] < pivot && j > start){
+        while (valores[j] < pivot && j > start ) {
           j--;
         }
-        if(i <= j){
+        if( i <= j ) {
           temp = valores[i];
           valores[i] = valores[j];
           valores[j] = temp;
@@ -22,23 +22,23 @@ void quicksort(int *valores,int *unicos,int start, int end){
           j--;
         } 
       }
-      if(j > start)
+      if( j > start )
         quicksort(valores,unicos,start,j+1);
-      if(i < end)
+      if( i < end )
         quicksort(valores,unicos,i,end);
 }
 
-int* uniqueElements(int *nums,int numsSize, int *count){
+int* uniqueElements( int *nums, int numsSize, int *count ) {
   int *retorno = NULL;
   int c = 0,i,j;
-  for(i = 0; i  < numsSize; i++){
-    for(j = 0; j < i; j++){
-      if(nums[i] == nums[j]){
+  for( i = 0 ; i  < numsSize ; i++ ) {
+    for( j = 0 ; j < i ; j++ ) {
+      if( nums[i] == nums[j] ) {
         break;
        }
      }
-       if(i  ==  j){
-         retorno = realloc(retorno,(i+1) * sizeof(int));
+       if( i  ==  j ) {
+         retorno = realloc( retorno,(i+1) * sizeof(int) );
          retorno[c] = nums[i];
          c++;
        }      
@@ -47,17 +47,17 @@ int* uniqueElements(int *nums,int numsSize, int *count){
     return retorno;
   }
 
-int* topKFrequent(int* nums, int numsSize, int k, int *returnSize){
+int* topKFrequent( int* nums , int numsSize , int k , int *returnSize ){
       int count;     
       *returnSize = k;      
       int *unicos = uniqueElements(nums,numsSize,&count);   
       int *valores = malloc(count * sizeof(int));
       int *valoresK = malloc(k * sizeof(int));
       int i = 0, c = 0, min, aux;
-      while (i < count)
+      while ( i < count )
       {
-        for(int j = 0; j <numsSize;j++){
-          if(nums[j] == unicos[i]){
+        for( int j = 0 ; j <numsSize ; j++ ) {
+          if( nums[j] == unicos[i] ) {
             c++;
             }
           }
@@ -85,7 +85,7 @@ int* topKFrequent(int* nums, int numsSize, int k, int *returnSize){
       }
       */
       quicksort(valores,unicos,0,count);
-      for(i = 0; i < k;i++){
+      for( i = 0 ; i < k ; i++ ) {
         valoresK[i] = unicos[i];  
       }
       
